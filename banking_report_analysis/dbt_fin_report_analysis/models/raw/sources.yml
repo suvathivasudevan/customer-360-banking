@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: banking_raw
+    catalog: dbt_fin_report_analysis   # 👈 your Databricks catalog
+    schema: raw                         # 👈 schema where your tables are
+    description: "Raw banking tables loaded from PostgreSQL"
+
+    tables:
+      - name: customers
+        description: "Raw customer records"
+
+      - name: accounts
+        description: "Raw account records"
+
+      - name: transactions
+        description: "Raw transaction records"
+
+      - name: loan_applications
+        description: "Raw loan application records"
+
+      - name: pipeline_watermark
+        description: "ELT pipeline watermark tracking"

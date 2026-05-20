@@ -1,0 +1,30 @@
+name: 'dbt_fin_report_analysis'
+version: '1.0.0'
+
+profile: 'dbt_fin_report_analysis'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_fin_report_analysis:
+
+    staging:
+      +materialized: view        # 👈 staging also view — lightweight cleaning only
+      +schema: staging           # 👈 writes to dbt_fin_report_analysis.staging
+
+    intermediate:
+      +materialized: view        # 👈 intermediate = views, no need to persist
+      +schema: intermediate      # 👈 writes to dbt_fin_report_analysis.intermediate
+
+    mart:
+      +materialized: table       # 👈 mart = tables — final business layer, queried often
+      +schema: mart              # 👈 writes to dbt_fin_report_analysis.mart
