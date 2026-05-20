@@ -3,3 +3,12 @@ target/
 dbt_packages/
 logs/
 dbt_internal_packages/
+
+
+profiles.yml
+.env
+target/
+logs/
+
+.vscode/
+venv/
